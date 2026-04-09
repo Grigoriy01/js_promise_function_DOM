@@ -2,15 +2,11 @@
 
 function waitFor(element, eventName) {
   // write your code here
-  return new Promise((resolve) => {
-    const messageHtml = `
-      <div class="message">
-        It was ${eventName} on the element: ${element.nodeName}, id: ${element.id}.
-      </div>
-    `;
+  const text = `It was ${eventName} on the element: ${element.nodeName}, id: ${element.id}.`;
 
+  return new Promise((resolve) => {
     element.addEventListener(eventName, (e) => {
-      resolve(messageHtml);
+      resolve(text);
     });
   });
 }
@@ -18,8 +14,11 @@ function waitFor(element, eventName) {
 const printMessage = (message) => {
   // write your code here
   const bodyContainer = document.querySelector('body');
+  const messageHtml = `
+      <div class="message">${message}</div>
+    `;
 
-  bodyContainer.insertAdjacentHTML('afterbegin', message);
+  bodyContainer.insertAdjacentHTML('afterbegin', messageHtml);
 };
 
 const loginField = document.getElementById('login');
